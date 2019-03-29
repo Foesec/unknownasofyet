@@ -1,0 +1,36 @@
+
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:DesktopGL
+/config:
+/profile:Reach
+/compress:False
+
+#-------------------------------- References --------------------------------#
+
+
+#---------------------------------- Content ---------------------------------#
+
+#begin Fonts/Cheepicus_12x12.png
+/copy:Fonts/Cheepicus_12x12.png
+
+#begin Fonts/Cheepicus12.font
+/copy:Fonts/Cheepicus12.font
+
+#begin Json/dialogue.json
+/copy:Json/dialogue.json
+
+#begin Json/mapdata.json
+/copy:Json/mapdata.json
+
+#begin Xp/entrancestreet.xp
+/copy:Xp/entrancestreet.xp
+
+#begin Xp/Sprites/horsey.xp
+/copy:Xp/Sprites/horsey.xp
+
+#begin Xp/toleaving.xp
+/copy:Xp/toleaving.xp
+

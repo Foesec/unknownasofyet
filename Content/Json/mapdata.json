@@ -1,0 +1,60 @@
+{
+    "entrancestreet": {
+        "Spawn": {"X": 56, "Y": 32},
+        "PlayerSize": "Large",
+        "Connections": [
+            {
+                "To": "deeperstreet",
+                "Locations": [
+                    {"X": 0, "Y": 33},
+                    {"X": 0, "Y": 34},
+                    {"X": 0, "Y": 35}
+                ]
+            },
+            {
+                "To": "store",
+                "Locations": [
+                    {"X": 24, "Y": 32},
+                    {"X": 25, "Y": 32},
+                    {"X": 26, "Y": 32},
+                    {"X": 27, "Y": 32}
+                ],
+                "Condition": "storeopen"
+            }
+        ],
+        "Events": [
+            {
+                "Name": "MyEvent",
+                "Condition": "!mycondition",
+                "Locations": [
+                    {"X": 16, "Y": 33},
+                    {"X": 16, "Y": 34},
+                    {"X": 16, "Y": 35}
+                ]
+            }
+        ],
+        "Interactions": [
+            {
+                "Name": "container",
+                "Condition": "!containersearched",
+                "Text": "container",
+                "Locations": [
+                    {"X": 2, "Y": 32},
+                    {"X": 3, "Y": 33},
+                    {"X": 4, "Y": 33},
+                    {"X": 5, "Y": 33}
+                ]
+            },
+            {
+                "Name": "phamplet",
+                "Condition": "!phampletfound",
+                "Text": "phampletfound",
+                "Locations":[
+                    {"X": 49, "Y": 32},
+                    {"X": 49, "Y": 33},
+                    {"X": 48, "Y": 33}
+                ]
+            }
+        ]
+    }
+}

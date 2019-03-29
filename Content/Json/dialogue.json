@@ -1,0 +1,23 @@
+{
+    "1": {
+        "Source": "Player",
+        "Trigger": null,
+        "Text": [
+            "This is the first block of text that is to be written.",
+            "Another block. 'Another' should start on a separate page."
+        ]
+    },
+    "2": {
+        "Source": null,
+        "Trigger": null,
+        "Text": [
+            "Here is only one block."
+        ]
+    },
+    "3": {
+        "Source": "Felix",
+        "Text": [
+            "This is a lot more text than before. Not necessarily a bad thing, but we will see how it turns out. Beneath the liquid sky you will find all that is sacred and much more."
+        ]
+    }
+}
