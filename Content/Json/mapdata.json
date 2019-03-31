@@ -30,6 +30,15 @@
                     {"X": 16, "Y": 33},
                     {"X": 16, "Y": 34},
                     {"X": 16, "Y": 35}
+                ],
+                "Effects": [
+                    {
+                        "Condition": "!eventtriggered",
+                        "Effects": [
+                            "T:flyby",
+                            "F:eventtriggered"
+                        ]
+                    }
                 ]
             }
         ],
@@ -46,13 +55,46 @@
                 ]
             },
             {
-                "Name": "phamplet",
-                "Condition": "!phampletfound",
-                "Text": "phampletfound",
+                "Name": "flyer",
+                "Condition": "!flyerdisappeared",
+                "Text": "readflyer",
                 "Locations":[
                     {"X": 49, "Y": 32},
                     {"X": 49, "Y": 33},
                     {"X": 48, "Y": 33}
+                ],
+                "Effects": [
+                    {
+                        "Condition": "!flyer.readonce",
+                        "Effects": [
+                            "T:readflyer",
+                            "F:flyer.readonce"
+                        ]
+                    },
+                    {
+                        "Condition": "flyer.readonce",
+                        "Effects": [
+                            "T:readflyeragain"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Entities": [
+            {
+                "Entity": "star",
+                "Locations": [
+                    {"X": 7, "Y": 8 },
+                    {"X": 17, "Y": 5 },
+                    {"X": 23, "Y": 14 },
+                    {"X": 38, "Y": 2 },
+                    {"X": 48, "Y": 11 }
+                ]
+            },
+            {
+                "Entity": "clerk",
+                "Locations": [
+                    {"X": 40, "Y": 29}
                 ]
             }
         ]

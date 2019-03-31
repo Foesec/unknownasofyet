@@ -1,7 +1,22 @@
 {
     "horsey": {
-        "Name": "Horsey",
+        "DisplayName": "Horsey",
         "AnimDuration": 1,
         "Repeat": true
+    },
+    "star": {
+        "DisplayName": "Star",
+        "AnimDuration": 2,
+        "Repeat": true,
+        "Bounce": true,
+        "Dimensions": { "X": 1, "Y": 1 },
+        "Collider": { "X": 0, "Y": 0, "Width": 1, "Height": 1}
+    },
+    "clerk": {
+        "DisplayName": "Clerk",
+        "AnimDuration": 3,
+        "Repeat": true,
+        "Bounce": false,
+        "Dimensions": {"X": 2, "Y": 2}
     }
 }

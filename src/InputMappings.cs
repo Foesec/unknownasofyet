@@ -34,6 +34,15 @@ namespace flxkbr.unknownasofyet
             return false;
         }
 
+        public static bool IsInteractionPressed(Keyboard info)
+        {
+            foreach (var key in mappings[InputAction.Interact])
+            {
+                if (info.IsKeyPressed(key)) return true;
+            }
+            return false;
+        }
+
         public static InputAction MovementPressed(Keyboard info)
         {
             if (IsActionPressed(info, InputAction.Left))

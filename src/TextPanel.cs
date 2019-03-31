@@ -23,7 +23,6 @@ namespace flxkbr.unknownasofyet
         public Queue<DialogUnit> CurrentDialogs { get; private set; }
 
         private State currentState;
-        private double charInterval;
         private DialogUnit currentDialog;
         private int iParagraph, iLine, iChar;
         private int yOffset;
@@ -57,13 +56,7 @@ namespace flxkbr.unknownasofyet
             currentDialog = dialog;
             iParagraph = iLine = iChar = 0;
             yOffset = (dialog.Source != null) ? 4 : 2;
-            int chars = 0;
             timeSinceLastChar = 0d;
-            foreach (var line in currentDialog.Paragraphs[iParagraph])
-            {
-                chars += line.Length;
-            }
-            charInterval = Globals.TextWritingDuration / (double)chars;
             CurrentState = State.Writing;
 
             // write Source if present and first char
@@ -94,14 +87,8 @@ namespace flxkbr.unknownasofyet
             else
             { // next paragraph
                 iLine = iChar = 0;
-                int chars = 0;
                 timeSinceLastChar = 0;
                 ++iParagraph;
-                foreach (var line in currentDialog.Paragraphs[iParagraph])
-                {
-                    chars += line.Length;
-                }
-                charInterval = Globals.TextWritingDuration / (double)chars;
                 if (currentDialog.Source != null)
                 {
                     Print(3, 2, currentDialog.Source.ToUpper());
@@ -114,7 +101,7 @@ namespace flxkbr.unknownasofyet
 
         private void write()
         {
-            if (timeSinceLastChar >= charInterval)
+            if (timeSinceLastChar >= Globals.CharWriteInterval)
             {
                 timeSinceLastChar = 0d;
                 var currentParagraph = currentDialog.Paragraphs[iParagraph];

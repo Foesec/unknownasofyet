@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Microsoft.Xna.Framework;
+using Serilog;
 
 namespace flxkbr.unknownasofyet.state
 {
@@ -23,6 +25,7 @@ namespace flxkbr.unknownasofyet.state
             if (instance == null)
             {
                 instance = new EntityDataStorage();
+                Log.Logger.Information("Successfully initialized EntityDataStorage");
             }
         }
 
@@ -43,8 +46,11 @@ namespace flxkbr.unknownasofyet.state
 
     public class EntityData
     {
-        public string Name { get; set; }
+        public string DisplayName { get; set; }
         public float AnimDuration { get; set; }
         public bool Repeat { get; set; }
+        public bool Bounce { get; set; }
+        public Point Dimensions { get; set; }
+        public Rectangle Collider { get; set; }
     }
 }

@@ -17,6 +17,10 @@ namespace flxkbr.unknownasofyet.text
         public DialogUnit(DialogObject dialog)
         {
             this.Source = dialog.Source;
+            if (this.Source == "$Player")
+            {
+                this.Source = Globals.PlayerName;
+            }
             this.Trigger = dialog.Trigger;
             this.linesPerParagraph = (this.Source != null) ? 4 : 5;
             this.Paragraphs = calculateParagraphs(dialog.Text);

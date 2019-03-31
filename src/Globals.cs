@@ -21,7 +21,10 @@ namespace flxkbr.unknownasofyet
         public static readonly int StatusPanelX = 60;
 
         public static readonly int MaxTextLineLength = TextPanelWidth - 4;
-        public static readonly double TextWritingDuration = 500;
+        // public static readonly double TextWritingDuration = 500;
+        public static readonly double CharWriteInterval = 2;
+
+        public static readonly double ReactivationDelay = 200;
 
         public static readonly int WalkableGlyph = 'O';
 
@@ -29,6 +32,10 @@ namespace flxkbr.unknownasofyet
         public static readonly string MapDataPath = "Content/Json/mapdata.json";
         public static readonly string EntityDataPath = "Content/Json/entitydata.json";
         public static readonly string XpPath = "Content/Xp/";
+
+        public static readonly string PlayerName = "MURIEL";
+
+        public static readonly string[] SpriteList = new string[]{ "horsey", "star", "clerk"};
 
         public static class Colors {
             public static readonly Color

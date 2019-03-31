@@ -14,6 +14,7 @@ namespace flxkbr.unknownasofyet
         [STAThread]
         static void Main()
         {
+            setupLogger();
             SadConsole.Settings.AllowWindowResize = false;
             SadConsole.Settings.UnlimitedFPS = true;
             
@@ -36,10 +37,13 @@ namespace flxkbr.unknownasofyet
             DialogStorage.Init();
             EntityDataStorage.Init();
             GameMapDataStorage.Init();
+            WorldEntity.LoadSprites();
             GameMap.LoadMaps();
 
+            GameScreen.Init();
+
             SadConsole.Global.CurrentScreen = new ContainerConsole();
-            var gameScreen = new GameScreen();
+            var gameScreen = GameScreen.GetInstance();
             SadConsole.Global.CurrentScreen.Children.Add(gameScreen);
             SadConsole.Global.FocusedConsoles.Set(gameScreen);
 
@@ -63,12 +67,13 @@ namespace flxkbr.unknownasofyet
             }
         }
 
-        static void SetupLogger()
+        static void setupLogger()
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.File("full.log")
-                .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                // .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                .WriteTo.Console()
                 .CreateLogger();
         }
     }

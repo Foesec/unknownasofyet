@@ -31,6 +31,9 @@
 #begin Xp/Sprites/horsey.xp
 /copy:Xp/Sprites/horsey.xp
 
+#begin Xp/Sprites/star.xp
+/copy:Xp/Sprites/star.xp
+
 #begin Xp/toleaving.xp
 /copy:Xp/toleaving.xp
 

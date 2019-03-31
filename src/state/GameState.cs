@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Serilog;
 
 namespace flxkbr.unknownasofyet.state
 {
@@ -37,6 +38,16 @@ namespace flxkbr.unknownasofyet.state
         {
             bool flag = GetFlag(c.Flag);
             return (flag == c.Predicate);
+        }
+
+        public static Dictionary<string, bool> GetSnapshot(List<string> flags)
+        {
+            Dictionary<string, bool> snapshot = new Dictionary<string, bool>(flags.Count);
+            foreach (var flag in flags)
+            {
+                snapshot.TryAdd(flag, GetFlag(flag));
+            }
+            return snapshot;
         }
     }
 }

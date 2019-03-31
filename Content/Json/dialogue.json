@@ -19,5 +19,24 @@
         "Text": [
             "This is a lot more text than before. Not necessarily a bad thing, but we will see how it turns out. Beneath the liquid sky you will find all that is sacred and much more."
         ]
+    },
+    "readflyer": {
+        "Source": "$Player",
+        "Text": [
+            "What's this? Looks like a flyer...",
+            "\"Did you stop today to ask yourself how you are feeling? Can you answer that question? Does it cause a vague feeling of dread? Do you suffer from unspecific anxiety or feel like life has been going to well recently? If you answered any of these questions with either Yes or No, the METAPHYSICS READING CIRCLE LEAVING is the right medicine for you. We meet every Monday and Thursday at 8PM in Town Hall, Room B6. We're always looking for new members! This month's schedule: Leviticus (11, 12), Barton Cylinder, Mislav's Impurities, Harry Potter 5\"",
+            "...",
+            "Sounds riveting."
+        ]
+    },
+    "readflyeragain" : {
+        "Source": "$Player",
+        "Text": [
+            "\"Did you stop today to ask yourself how you are feeling? Can you answer that question? Does it cause a vague feeling of dread? Do you suffer from unspecific anxiety or feel like life has been going to well recently? If you answered any of these questions with either Yes or No, the METAPHYSICS READING CIRCLE LEAVING is the right medicine for you. We meet every Monday and Thursday at 8PM in Town Hall, Room B6. We're always looking for new members! This month's schedule: Leviticus (11, 12), Barton Cylinder, Mislav's Impurities, Harry Potter 5\"",
+            "..."
+        ]
+    },
+    "flyby": {
+        "Text": ["Huh? What was that?"]
     }
 }

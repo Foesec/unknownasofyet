@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
+using Serilog;
 
 namespace flxkbr.unknownasofyet.state
 {
@@ -22,7 +23,11 @@ namespace flxkbr.unknownasofyet.state
         {
             mapData = JsonConvert.DeserializeObject<Dictionary<string, MapData>>(
                 File.ReadAllText(Globals.MapDataPath),
-                new ConditionConverter());
+                new JsonConverter[]
+                {
+                    new ConditionConverter(),
+                    new EffectConverter()
+                });
         }
 
         public static void Init()
@@ -30,6 +35,7 @@ namespace flxkbr.unknownasofyet.state
             if (instance == null)
             {
                 instance = new GameMapDataStorage();
+                Log.Logger.Information("Successfully initialized GameMapDataStorage");
             }
         }
 
@@ -59,6 +65,7 @@ namespace flxkbr.unknownasofyet.state
         private List<EventObject> events;
         private List<InteractionObject> interactions;
 
+        public List<EntityObject> Entities { get; set; }
         public List<ConnectionObject> Connections { get; set; }
         public List<EventObject> Events
         { 
@@ -73,7 +80,7 @@ namespace flxkbr.unknownasofyet.state
                     {
                         if (EventLookup.ContainsKey(loc))
                         {
-                            Console.Error.Write($"EventLookup contains multiple events at loc {loc}");
+                            Log.Logger.Error("EventLookup contains multiple events at location {Loc}", loc);
                         }
                         else
                         {
@@ -96,7 +103,7 @@ namespace flxkbr.unknownasofyet.state
                     {
                         if (InteractionLookup.ContainsKey(loc))
                         {
-                            Console.Error.WriteLine($"InteractionLookup contains multiple interactions at loc {loc}");
+                            Log.Logger.Error("InteractionLookup contains multiple interactions at location {Loc}", loc);
                         }
                         else
                         {
@@ -109,11 +116,23 @@ namespace flxkbr.unknownasofyet.state
         
     }
 
+    public class EntityObject
+    {
+        public string Entity { get; set; }
+        public List<Point> Locations { get; set; }
+
+        public override string ToString()
+        {
+            return $"Entity {Entity}";
+        }
+    }
+
     public class ConnectionObject
     {
         public string To { get; set; }
         public List<Point> Locations { get; set; }
         public Condition Condition { get; set; }
+        public Effect Effect { get; set; }
 
         public override string ToString()
         {
@@ -126,6 +145,7 @@ namespace flxkbr.unknownasofyet.state
         public string Name { get; set; }
         public Condition Condition { get; set; }
         public List<Point> Locations { get; set; }
+        public List<ConditionalEffectsObject> Effects { get; set; }
 
         public override string ToString()
         {
@@ -139,11 +159,18 @@ namespace flxkbr.unknownasofyet.state
         public Condition Condition { get; set; }
         public string Text { get; set; }
         public List<Point> Locations { get; set; }
+        public List<ConditionalEffectsObject> Effects { get; set; }
 
         public override string ToString()
         {
             return $"{{{Name} IF {Condition.ToString()}}}";
         }
+    }
+    
+    public class ConditionalEffectsObject
+    {
+        public Condition Condition { get; set; }
+        public List<Effect> Effects { get; set; }
     }
 
     public class ConditionConverter : JsonConverter<Condition>
