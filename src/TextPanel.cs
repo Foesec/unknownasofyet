@@ -146,7 +146,7 @@ namespace flxkbr.unknownasofyet
         {
             if (CurrentState == State.Waiting)
             {
-                if (info.IsKeyPressed(Microsoft.Xna.Framework.Input.Keys.Space))
+                if (InputMappings.IsInteractionPressed(info))
                 {
                     bool moreDialog = advanceParagraph();
                     if (!moreDialog)

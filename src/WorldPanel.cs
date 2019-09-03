@@ -121,46 +121,41 @@ namespace flxkbr.unknownasofyet
 
         private void triggerInteraction(InteractionObject interaction)
         {
-            // Store state at moment of triggering - effects can change flags and
-            // influence the Conditions of subsequent effects.
-            var flags =
-                (from cEffects in interaction.Effects
-                select cEffects.Condition.Flag).ToList();
-            Dictionary<string, bool> snapshot = GameState.GetSnapshot(flags);
-            // Dictionary<string, bool> currentState = new Dictionary<string, bool>(interaction.Effects.Count);
-            // foreach (var cEffect in interaction.Effects)
-            // {
-            //     currentState.Add(cEffect.Condition.ToString(), cEffect.Condition.Satisfied);
-            // }
+            // Collect satisfied effects before executing - effects can change
+            // flags and influence the Conditions of subsequent effects.
+            List<Effect> satisfiedEffects = new List<Effect>();
             foreach (var cEffects in interaction.Effects)
             {
-                if (snapshot[cEffects.Condition.Flag] == cEffects.Condition.Predicate)
+                if (cEffects.Condition.Satisfied)
                 {
                     foreach (var effect in cEffects.Effects)
                     {
-                        effect.Execute();
+                        satisfiedEffects.Add(effect);
                     }
                 }
+            }
+            foreach (var effect in satisfiedEffects)
+            {
+                effect.Execute();
             }
         }
 
         private void triggerEvent(EventObject ev)
         {
-            Log.Logger.Information("Triggered event {Event}", ev);
-            var flags =
-                (from cEffects in ev.Effects
-                select cEffects.Condition.Flag).ToList();
-            Dictionary<string, bool> snapshot = GameState.GetSnapshot(flags);
-
+            List<Effect> satisfiedEffects = new List<Effect>();
             foreach (var cEffects in ev.Effects)
             {
-                if (snapshot[cEffects.Condition.Flag] == cEffects.Condition.Predicate)
+                if (cEffects.Condition.Satisfied)
                 {
                     foreach (var effect in cEffects.Effects)
                     {
-                        effect.Execute();
+                        satisfiedEffects.Add(effect);
                     }
                 }
+            }
+            foreach (var effect in satisfiedEffects)
+            {
+                effect.Execute();
             }
         }
     }
